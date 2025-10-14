@@ -1,6 +1,7 @@
 import Image, { type ImageProps } from "next/image";
-import styles from "./page.module.css";
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 
 type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
@@ -22,7 +23,9 @@ export default function Home() {
   return (
     <div>
       <Button size="lg" asChild>
-        <h1 className="text-3xl text-red-400 ">hello worldf</h1>
+        <Link href="/auth/login" className="text-3xl text-red-400 ">
+          hello worldf
+        </Link>
       </Button>
     </div>
   );
