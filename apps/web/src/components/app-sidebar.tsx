@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { BrainCircuit, Home, Inbox, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -11,37 +11,41 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Button } from "./ui/button"
+import { memo } from "react";
+
 
 // Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
 
-export function AppSidebar() {
+
+export default memo(
+
+     function AppSidebar() {
+        const items = [
+        {
+          title: "Home",
+          url: "/",
+          icon: Home,
+          count: 1,
+        },
+        {
+          title: "Monitor",
+          url: "/",
+          icon: Inbox,
+          count: 2, 
+        },
+        {
+          title: "AI Insights",
+          url: "/ai-insights",
+          icon: BrainCircuit,
+          count: 4,
+        },
+        {
+          title: "Settings",
+          url: "/settings",
+          icon: Settings,   
+          count: 5,
+        },
+      ]
   return (
     <Sidebar>
       <SidebarContent>
@@ -57,9 +61,17 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <a href={item.url} className="flex items-center justify-between">
+                        <div className="flex gap-x-4 items-center">
+
                       <item.icon />
                       <span>{item.title}</span>
+                        </div>
+                      {item.count > 0 && (
+                        <span className="ml-2 rounded-full  text-zinc-400  px-2 py-1 text-xs">
+                          {item.count}
+                        </span>
+                      )}
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -71,3 +83,4 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
+        )

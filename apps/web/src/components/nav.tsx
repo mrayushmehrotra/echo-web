@@ -12,7 +12,7 @@ export default function Nav() {
                     <p
                     className="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
                     >
-                   <Button variant={"outline"}  >
+                   <Button variant={"outline"}>
                          <SidebarTrigger/> 
                          </Button>
                     </p>
