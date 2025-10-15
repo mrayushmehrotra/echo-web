@@ -1,4 +1,4 @@
-import { BrainCircuit, Home, Inbox, Settings } from "lucide-react"
+import { BrainCircuit, Home, Inbox, Plus, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -10,8 +10,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Button } from "./ui/button"
 import { memo } from "react";
+import Image from "next/image";
+import { Button } from "./ui/button";
 
 
 // Menu items.
@@ -29,7 +30,7 @@ export default memo(
         },
         {
           title: "Monitor",
-          url: "/",
+          url: "/monitor",
           icon: Inbox,
           count: 2, 
         },
@@ -47,20 +48,35 @@ export default memo(
         },
       ]
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-            <h1>Echo</h1>
-            <Button>User Logo</Button>
+          <div className="flex items-center p-2 gap-x-2 group-data-[collapsible=icon]:justify-center"> 
+
+        <Image src="/favicon.svg" alt="Logo" width={32} height={32} className="group-data-[collapsible=icon]:mx-auto" />    
+        <h1
+           className="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] group-data-[collapsible=icon]:hidden"
+           >Echo</h1> 
+           </div>
+           
         </SidebarGroup>
+
+
+<SidebarGroup className="pb-8 pt-8 group-data-[collapsible=icon]:px-0" >
+  <Button className="group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:mx-auto">
+    <Plus className="group-data-[collapsible=icon]:mx-auto"/>
+    <span className="group-data-[collapsible=icon]:hidden">Add Website</span>
+  </Button>
+</SidebarGroup>
+
 
         <SidebarGroup>
           <SidebarGroupLabel>Core</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="px-2" >
+            <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild tooltip={item.title}>
                     <a href={item.url} className="flex items-center justify-between">
                         <div className="flex gap-x-4 items-center">
 
@@ -68,7 +84,7 @@ export default memo(
                       <span>{item.title}</span>
                         </div>
                       {item.count > 0 && (
-                        <span className="ml-2 rounded-full  text-zinc-400  px-2 py-1 text-xs">
+                        <span className="ml-2 rounded-full  text-zinc-400 text-xs">
                           {item.count}
                         </span>
                       )}
