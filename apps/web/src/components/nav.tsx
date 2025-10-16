@@ -2,6 +2,7 @@ import { Plus } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
 import { SidebarTrigger } from "./ui/sidebar";
+import { CommandMenu } from "./command-pallete";
 
 export default function Nav() {
 
@@ -18,11 +19,7 @@ export default function Nav() {
                     </p>
                 </li>
                 <li>
-                    <Button
-                    className="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
-                    >
-                        <Plus /> Add Website
-                    </Button>
+                    <CommandMenu />
                 </li>
             </ul>
         </nav>
